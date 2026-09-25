@@ -198,5 +198,5 @@ var route2 = Zone(
 
 fun main() {
     route1.zoneSuivante = route2
-    route2.zonePrecedente = route1
+    route2.zonePrecedante = route1
 }
