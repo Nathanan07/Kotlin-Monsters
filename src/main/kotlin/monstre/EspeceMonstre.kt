@@ -31,9 +31,9 @@ import java.io.File
 
 
 class EspeceMonstre (
-    var id : Int,
-    var nom: String,
-    var type: String,
+    val id : Int,
+    val nom: String,
+    val type: String,
     val baseAttaque: Int,
     val baseDefense: Int,
     val baseVitesse: Int,

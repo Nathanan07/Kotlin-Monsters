@@ -160,10 +160,10 @@ var especeGalum = EspeceMonstre(
 
 
 fun main() {
-    println(especeSpringleaf)
-    println(especeFlamkip)
-    println(especeAquamy)
-    println(especeBugsyface)
-    println(especeGalum)
-    println(especeLaoumi)
+    println(especeSpringleaf.afficheArt())
+    println(especeGalum.afficheArt())
+    println(especeFlamkip.afficheArt())
+    println(especeLaoumi.afficheArt())
+    println(especeBugsyface.afficheArt())
+    println(especeAquamy.afficheArt())
 }
