@@ -1,4 +1,5 @@
 import dressseur.Entraineur
+import monde.Zone
 import monstre.EspeceMonstre
 
 /**
@@ -28,9 +29,32 @@ fun changeCouleur(message: String, couleur:String=""): String {
     return "$codeCouleur$message$reset"
 }
 
+/**
+ * Créer la variable joueur pour la class Entraineur
+ * Créer la variable rival op joueur pour la class Entraineur
+ */
+
 var joueur = Entraineur(1,"Sacha",100)
 
 var rival = Entraineur(2, "Regis", 200)
+
+/**
+ * Création des différentes espèces de monstres disponibles dans le jeu.
+ *
+ * Chaque espèce de monstre possède un identifiant unique, un nom et un type,
+ * ainsi que différentes statistiques de base permettant de définir ses
+ * capacités au combat.
+ *
+ * Les statistiques de base correspondent aux caractéristiques propres à
+ * chaque espèce, tandis que les modificateurs permettent d'ajuster ces
+ * caractéristiques selon les règles du jeu.
+ *
+ * Chaque espèce possède également une description, des particularités
+ * et des traits de caractère qui permettent de la différencier des autres.
+ *
+ * Les différentes espèces créées ici pourront ensuite être regroupées
+ * dans une liste afin d'être utilisées dans les différentes zones du jeu.
+ */
 
 var especeSpringleaf = EspeceMonstre(
     id=1,
@@ -158,12 +182,21 @@ var especeGalum = EspeceMonstre(
     caractères = "Sérieux, stoïque, fiable"
 )
 
+var route1 = Zone(
+    id = 1,
+    nom = "Forêt joviale",
+    expZone = 10
+)
+
+var route2 = Zone(
+    id = 2,
+    nom = "Forêt brumeuse",
+    expZone = 10
+)
+
+
 
 fun main() {
-    println(especeSpringleaf.afficheArt())
-    println(especeGalum.afficheArt())
-    println(especeFlamkip.afficheArt())
-    println(especeLaoumi.afficheArt())
-    println(especeBugsyface.afficheArt())
-    println(especeAquamy.afficheArt())
+    route1.zoneSuivante = route2
+    route2.zonePrecedente = route1
 }
