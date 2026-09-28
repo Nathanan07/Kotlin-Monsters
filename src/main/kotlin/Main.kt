@@ -1,4 +1,5 @@
 import dressseur.Entraineur
+import jeu.IndividuMonstres
 import monde.Zone
 import monstre.EspeceMonstre
 
@@ -195,8 +196,8 @@ var route2 = Zone(
 )
 
 
-
 fun main() {
-    route1.zoneSuivante = route2
-    route2.zonePrecedante = route1
+    val monstre1 = IndividuMonstres(1, "springleaf", especeSpringleaf, joueur, 1500.0)
+    val monstre2 = IndividuMonstres(2, "flamkip", especeFlamkip, joueur, 1500.0)
+    val monstre3 = IndividuMonstres(3, "aquamy", especeAquamy, joueur, 1500.0)
 }
