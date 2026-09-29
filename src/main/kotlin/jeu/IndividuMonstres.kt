@@ -1,6 +1,7 @@
 package jeu
 
 import dressseur.Entraineur
+import joueur
 import monstre.EspeceMonstre
 import kotlin.math.pow
 import kotlin.math.round
@@ -75,12 +76,42 @@ class IndividuMonstres (
         this.exp = expInit // applique le setter et déclenche un éventuel level-up
     }
 
-    fun attaquer() {
+    fun attaquer(cible : IndividuMonstres) {
         var degatBrut : Int = this.attaque
         var degatTotal : Int = degatBrut - (this.defense/2)
 
+        if (degatTotal < 1) {
+            degatTotal = 1
+        }
+        var pvAvant : Int = cible.pv
+        cible.pv -= degatTotal
+        var pvApres : Int = cible.pv
+
+        println("${joueur}, inflige ${pvAvant-pvApres} dégats à ${cible.nom}")
     }
 
+    fun renommer() {
+        print("Renommer : ")
+        var nouveauNom : String = readln()
+        if (nouveauNom == null) {
+            nouveauNom == ""
+        } else {
+            nom = nouveauNom
+        }
+    }
+
+    fun afficheDetail() {
+        espece.afficheArt()
+
+        println("=========================")
+        println("Nom : ${nom}       Niveau : ${niveau}")
+        println("Exp : ${exp}")
+        println("PV : ${pv}/${pvMax}")
+        println("=========================")
+        println("Atq : ${attaque}   Def : ${defense}    Vitesse : ${vitesse}")
+        println("AtqSpe ${attaqueSpe}   DefSpe ${defenseSpe}")
+
+    }
 
 }
 
