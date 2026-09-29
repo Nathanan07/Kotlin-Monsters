@@ -1,5 +1,7 @@
 package dressseur
 
+import monstre.IndividuMonstre
+
 /**
  * Représente un entraîneur dans le contexte du jeu.
  *
