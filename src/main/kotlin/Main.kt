@@ -1,4 +1,5 @@
 import dressseur.Entraineur
+import item.MonsterKube
 import monstre.IndividuMonstre
 import monde.Zone
 import monstre.EspeceMonstre
@@ -195,6 +196,13 @@ var route2 = Zone(
     expZone = 10
 )
 
+var monstercube1 = MonsterKube(
+    1,
+    "Oggy",
+    "Chasse les cafards",
+    chanceCapture = 75.0,
+    name = TODO(),
+)
 
 fun main() {
     val monstre1 = IndividuMonstre(1, "springleaf", especeSpringleaf, joueur, 1500.0)

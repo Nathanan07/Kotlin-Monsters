@@ -5,6 +5,7 @@ import joueur
 import kotlin.math.pow
 import kotlin.math.round
 import kotlin.random.Random
+import monstre.CombatMonstre
 
 /**
  * Représente un individu d'une espèce de monstre dans le contexte du jeu.
