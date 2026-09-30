@@ -3,6 +3,8 @@ package monstre
 import joueur
 import monstre.IndividuMonstre
 import kotlin.math.exp
+import dressseur.Entraineur
+import item.Utilisable
 
 class CombatMonstre (var monstreJoueur : IndividuMonstre, var monstreSauvage : IndividuMonstre) {
     var round : Int = 1
@@ -36,11 +38,71 @@ class CombatMonstre (var monstreJoueur : IndividuMonstre, var monstreSauvage : I
     }
 
     fun  actionAdversaire() {
-
+        if (monstreSauvage.pv > 0) {
+            monstreSauvage.attaquer(monstreJoueur)
+        }
     }
 
-    fun actionJoueur() {
+    fun actionJoueur(): Boolean {
+        if (gameOver() ==true) {
+            return false
+        } else {
+            println("1 : le monstre du joueur attaque le monstre sauvage.\n" +
+                    "2 : Utiliser un item\n" +
+                    "3 : le joueur peut changer son monstre actuel contre un autre monstre de son équipe")
+            var choixAction : String = readln()
 
+            when (readlnOrNull()?.toIntOrNull()) {
+                1 -> monstreJoueur.attaquer(monstreSauvage)
+                2 -> {
+                    joueur.sacAItems.forEachIndexed { index, item ->
+                        println("${item.nom} ($index)")
+                    }
+                    var indexChoix = readln().toIntOrNull()
+                    if (indexChoix != null) {
+                        var objetChoisi = joueur.sacAItems.getOrElse(indexChoix, { null })
+                        if (objetChoisi is Utilisable) {
+                            var captureReussie = objetChoisi.utiliser(monstreSauvage)
+                            if (captureReussie) {
+                                return false
+                            }
+                        } else {
+                            println("Objet non utilisable")
+                        }
+                    } else {
+                        println("Objet pas trouvé")
+                    }
+                }
+                3 -> {
+                    if (joueur.equipeMonstre.size > 2) {
+                        var dernierMonstre: Int = joueur.equipeMonstre.lastIndex
+                        joueur.equipeMonstre.forEachIndexed { index, monstre ->
+                            if (monstre.pv > 0) {
+                                println("${monstre.nom} ($index)")
+                                dernierMonstre = index
+                            }
+                        }
+
+                        var indexChoix = readln().toIntOrNull() ?: 0
+                        var choixMonstre =
+                            joueur.equipeMonstre.getOrElse(indexChoix, { joueur.equipeMonstre.get(dernierMonstre) })
+                        if (choixMonstre.pv <= 0) {
+                            println("Impossible ! Ce monstre est Ko")
+                        } else {
+                            println("[${choixMonstre}] remplace [${monstreJoueur}]")
+                            monstreJoueur = choixMonstre
+                        }
+
+                    } else {
+                        println("Pas assez de monstres")
+                        //return false
+                    }
+                }
+                else -> {}
+            }
+            return true
+        }
+        return TODO("Provide the return value")
     }
 
     fun afficheCombat() {
