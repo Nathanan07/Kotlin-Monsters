@@ -1,5 +1,7 @@
 package item
 
+import dressseur.Entraineur
+import joueur
 import monstre.IndividuMonstre
 import kotlin.random.Random
 
@@ -8,7 +10,8 @@ class MonsterKube (
     nom: String,
     description: String,
     var chanceCapture: Double,
-    val name : IndividuMonstre
+    val name : IndividuMonstre,
+
 ) : Item(id, nom, description), Utilisable {
     override fun utiliser(cible: IndividuMonstre): Boolean {
 
@@ -26,8 +29,17 @@ class MonsterKube (
             }
         }
 
+        if (joueur.equipeMonstre.size >= 6) {
+            joueur.boiteMonstre.add(cible)
+        } else {
+            joueur.equipeMonstre.add(cible)
+        }
+
+        cible.entraineur=joueur
 
 
+
+        return TODO("Provide the return value")
     }
 
 }
