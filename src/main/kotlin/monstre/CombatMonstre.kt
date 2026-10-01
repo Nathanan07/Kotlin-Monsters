@@ -1,6 +1,7 @@
 package monstre
 
 import joueur
+import monstre.EspeceMonstre
 import monstre.IndividuMonstre
 import kotlin.math.exp
 import dressseur.Entraineur
@@ -106,7 +107,13 @@ class CombatMonstre (var monstreJoueur : IndividuMonstre, var monstreSauvage : I
     }
 
     fun afficheCombat() {
-
+        println("======== Début Round : $round ========")
+        println("Niveau : ${monstreSauvage.niveau}")
+        println("PV : ${monstreSauvage.pv} / ${monstreSauvage.pvMax}")
+        println(monstreSauvage.espece.afficheArt())
+        println(monstreSauvage.espece.afficheArt(false))
+        println("Niveau : ${monstreJoueur.niveau}")
+        println("PV : ${monstreSauvage.pv} / ${monstreJoueur.pvMax}")
     }
 
     fun jouer() {
