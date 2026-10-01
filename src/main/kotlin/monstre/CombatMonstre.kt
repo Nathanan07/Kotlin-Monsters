@@ -117,6 +117,24 @@ class CombatMonstre (var monstreJoueur : IndividuMonstre, var monstreSauvage : I
     }
 
     fun jouer() {
+        val joueurPlusRapide = (monstreJoueur.vitesse >= monstreSauvage.vitesse)
+        afficheCombat()
+        var continuer : Boolean
+        if (joueurPlusRapide) {
+            continuer = actionJoueur()
+            if (continuer == false) {
+                return
+            }
+            actionJoueur()
+        } else {
+            actionJoueur()
+            if (gameOver() == false) {
+                continuer = actionJoueur()
+                if (continuer == false) {
+                    return
+                }
+            }
+        }
 
     }
 
