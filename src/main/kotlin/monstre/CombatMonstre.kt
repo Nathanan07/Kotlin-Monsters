@@ -138,7 +138,22 @@ class CombatMonstre (var monstreJoueur : IndividuMonstre, var monstreSauvage : I
 
     }
 
-    fun lancerCombat() {
-
+    /**
+     * Lance le combat et gère les rounds jusqu'à la victoire ou la défaite.
+     *
+     * Affiche un message de fin si le joueur perd et restaure les PV
+     * de tous ses monstres.
+     */
+    fun lanceCombat() {
+        while (!gameOver() && !joueurGagne()) {
+            this.jouer()
+            println("======== Fin du Round : $round ========")
+            round++
+        }
+        if (gameOver()) {
+            joueur.equipeMonstre.forEach { it.pv = it.pvMax }
+            println("Game Over !")
+        }
     }
+
 }
