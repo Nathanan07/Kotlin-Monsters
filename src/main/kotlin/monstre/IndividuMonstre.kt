@@ -66,9 +66,10 @@ import monstre.CombatMonstre
 class IndividuMonstre(
     var id: Int,
     var nom: String,
+    expInit: Double,
     var espece: EspeceMonstre,
     var entraineur: Entraineur? = null,
-    expInit: Double
+
 ) {
     var niveau: Int = 1
     var attaque: Int = espece.baseAttaque + listOf(-2, 2).random() /* score de base de l'espèce + -2..2 */

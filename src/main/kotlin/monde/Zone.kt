@@ -37,8 +37,8 @@ class Zone (
 ) {
     fun genereMonster(): IndividuMonstre {
         var uneEspece= especesMonstres.random()
-        var individuMonstre = IndividuMonstre(id=5, nom=uneEspece.nom, espece = uneEspece, expInit = expZone.toDouble()+( (-20..20).random()/100 *expZone))
-        return IndividuMonstre
+        var individuMonstre = IndividuMonstre(id=5, nom=uneEspece.nom, expZone.toDouble()+( (-20..20).random()/100 *expZone), espece = uneEspece)
+        return individuMonstre
     }
 
     fun rencontreMonstre() {
