@@ -1,6 +1,9 @@
 package monde
 
+import joueur
 import monstre.EspeceMonstre
+import monstre.CombatMonstre
+import monstre.IndividuMonstre
 
 /**
  * Représente une zone du monde dans laquelle le joueur peut se déplacer
@@ -31,4 +34,19 @@ class Zone (
     // TODO genereMonstre()
     // TODO rencontreMonstre()
 
-)
+) {
+    fun genereMonster(): IndividuMonstre {
+        var uneEspece= especesMonstres.random()
+        var individuMonstre = IndividuMonstre(id=5, nom=uneEspece.nom, espece = uneEspece, expInit = expZone.toDouble()+( (-20..20).random()/100 *expZone))
+        return IndividuMonstre
+    }
+
+    fun rencontreMonstre() {
+        val monstreSauvage = genereMonster()
+        val premM = joueur.equipeMonstre[0]
+        var combatMonstre = CombatMonstre(premM, monstreSauvage)
+        combatMonstre.lanceCombat()
+    }
+
+}
+
